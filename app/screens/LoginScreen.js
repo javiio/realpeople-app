@@ -13,7 +13,7 @@ const LoginScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (user) {
-      navigation.navigate('home');
+      navigation.navigate('home', { user: user.id });
     }
   }, [user]);
 

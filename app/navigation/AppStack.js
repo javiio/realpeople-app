@@ -16,6 +16,26 @@ import WaitingScreen from '../screens/WaitingScreen';
 
 const Stack = createNativeStackNavigator();
 
+export const linking = {
+  // prefixes: ['https://app.pamecastellon.com'],
+  config: {
+    screens: {
+      login: 'login',
+      home: ':user/home',
+      survey: ':user/survey',
+      routinesList: ':user/routinesList',
+      routine: ':user/routine',
+      product: ':user/product',
+      trainingsList: ':user/trainingsList',
+      training: ':user/training',
+      trainingStep: ':user/trainingStep',
+      resources: ':user/resources',
+      resource: ':user/resource',
+      waiting: ':user/waiting',
+    },
+  },
+};
+
 const AppStack = () => (
   <Stack.Navigator>
     <Stack.Screen

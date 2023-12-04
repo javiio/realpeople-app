@@ -4,33 +4,34 @@ import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
 import { Icon } from '@rneui/base';
 import { Text } from '../common';
-import { useSections } from '../../hooks';
+import { useSections, useUser } from '../../hooks';
 import { calcWidth } from '../../helpers/dimensions';
 
 const Section = ({ section }) => {
   const { navigate } = useNavigation();
   const { setSection } = useSections();
+  const { user } = useUser();
 
   const handleOnPress = () => {
     setSection(section);
 
     if (section.isEmpty) {
-      navigate('waiting');
+      navigate('waiting', { user: user.id });
       return;
     }
 
     switch (section.type) {
       case 'survey':
-        navigate('survey');
+        navigate('survey', { user: user.id });
         break;
       case 'routines':
-        navigate('routinesList');
+        navigate('routinesList', { user: user.id });
         break;
       case 'trainings':
-        navigate('trainingsList');
+        navigate('trainingsList', { user: user.id });
         break;
       case 'resources':
-        navigate('resources');
+        navigate('resources', { user: user.id });
         break;
       default:
         break;

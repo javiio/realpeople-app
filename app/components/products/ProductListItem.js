@@ -27,7 +27,7 @@ const ProductListItem = ({ id }) => {
     }
   };
 
-  const showDetails = () => navigate('product', { product });
+  const showDetails = () => navigate('product', { product, user: user.id });
 
   const textNoWrapStyle = Platform.OS === 'web' ? { whiteSpace: 'nowrap' } : {};
 

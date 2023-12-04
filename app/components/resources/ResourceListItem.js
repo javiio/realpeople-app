@@ -3,11 +3,12 @@ import { View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
 import { Icon } from '@rneui/base';
+import { useUser } from '../../hooks';
 import { Text } from '../common';
-import { calcWidth } from '../../helpers/dimensions';
 
 const ResourceListItem = ({ resource }) => {
   const { navigate } = useNavigation();
+  const { user } = useUser();
 
   const getIconName = () => {
     switch (resource.type) {
@@ -24,7 +25,7 @@ const ResourceListItem = ({ resource }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigate('resource', { resource })}
+      onPress={() => navigate('resource', { resource, user: user.id })}
       style={tw`bg-white px-2 py-4 border-b border-gray-300 flex-row items-center`}
     >
       <Icon name={getIconName()} color="#312e81" size={19} style={tw`mt-1`} />

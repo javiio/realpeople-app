@@ -4,10 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Icon } from '@rneui/themed';
 import tw from 'twrnc';
 import * as Animatable from 'react-native-animatable';
-import Dialog from "react-native-dialog";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Button, Text } from '../common';
-import { useSurvey, useDialog } from '../../hooks';
+import { useSurvey, useDialog, useUser } from '../../hooks';
 import Images from '../../theme/Images';
 import { calcCardDimensions } from './helpers';
 
@@ -16,10 +15,11 @@ const StaticCard = ({ card, next, prev, isFirstLoad }) => {
   const { finishSurvey } = useSurvey();
   const navigation = useNavigation();
   const { showDialog } = useDialog();
+  const { user } = useUser();
 
   const send = () => {
     finishSurvey();
-    navigation.navigate('home');
+    navigation.navigate('home', { user: user.id });
     showDialog({
       title: card.sentTitle || 'Envio correcto.',
       description: card.sentText || 'Recibimos tus respuestas correctamente',

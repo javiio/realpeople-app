@@ -3,11 +3,13 @@ import { View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc';
 import { Icon } from '@rneui/base';
+import { useUser } from '../../hooks';
 import { Text } from '../common';
 import { calcWidth } from '../../helpers/dimensions';
 
 const TrainingStepsList = ({ steps, routine }) => {
   const { navigate } = useNavigation();
+  const { user } = useUser();
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -16,7 +18,7 @@ const TrainingStepsList = ({ steps, routine }) => {
       </Text>
       {steps.map((step) => (
         <TouchableOpacity
-          onPress={() => navigate('trainingStep', { step })}
+          onPress={() => navigate('trainingStep', { step, user: user.id })}
           key={step.name}
           style={tw.style(
             'bg-white rounded-lg mb-4 mx-4 flex-row overflow-hidden h-28',

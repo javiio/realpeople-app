@@ -2,16 +2,19 @@ import React, { useLayoutEffect } from 'react';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
+import { useUser } from '../hooks';
 import { Text } from '../components/common';
 
 const RoutinesListScreen = ({ navigation }) => {
+  const { user } = useUser();
+  const { navigate } = useNavigation();
+
   useLayoutEffect(() => {
     navigation.setOptions({ title: 'Rutinas' });
   }, []);
 
-  const { navigate } = useNavigation();
   const selectRoutineLevel = (level, name) => {
-    navigate('routine', { level, name });
+    navigate('routine', { level, name, user: user.id });
   };
 
   return (

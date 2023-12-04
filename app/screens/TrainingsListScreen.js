@@ -2,16 +2,19 @@ import React, { useLayoutEffect } from 'react';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
+import { useUser } from '../hooks';
 import { Text } from '../components/common';
 
 const TrainingsListScreen = ({ navigation }) => {
+  const { user } = useUser();
+  const { navigate } = useNavigation();
+
   useLayoutEffect(() => {
     navigation.setOptions({ title: 'Skincare Training' });
   }, []);
 
-  const { navigate } = useNavigation();
   const selectTraining = (level, name) => {
-    navigate('training', { level, name });
+    navigate('training', { level, name, user: user.id });
   };
 
   return (
